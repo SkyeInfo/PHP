@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <title>推送页面</title>
+</head>
+
+<style type="text/css">
+    html,body {
+        width: 80%;
+    }
+    *{
+        font-family: 微软雅黑;
+    }
+    .sk-form-control {
+        width: 400px;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+    .sk-font {
+        font-family: 微软雅黑;
+        font-size: 20px;
+    }
+    .sk-font-1 {
+        font-family: 微软雅黑;
+        font-size: 15px;
+    }
+    .sk-form-input {
+        width: 100%;
+        height: 34px;
+        padding: 6px 12px;
+        font-size: 14px;
+        line-height: 1.42857143;
+        color: #555;
+        background-color: #fff;
+        background-image: none;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    }
+</style>
+<body>
+<div class="container-fluid">
+    <div class="span12">
+        <div style="background: #e6e6e6; height: 500px;">
+            <h2 style="margin-top: 20px; margin-left: 15px;">图文推送页面</h2>
+            <div>
+                <div style="margin-top: 20px; margin-left: 15px;">
+                    <span class="sk-font-1">设置发送数量</span>
+                    <input type="text" id="set_send_num" name="send_name" style="width: 100px;" class="sk-form-input"><span class="sk-font-1"> 万</span>
+                    <span id = "progress"></span>
+                </div>
+            </div>
+            <div>
+                <div style="margin-top: 20px; margin-left: 15px;">
+                    <span class="sk-font-1">选择推送素材:</span>
+                    <select class="sk-form-control" id="media-id">
+                        <option value="">请选择推送素材</option>
+                    </select>
+                    <span style="color: red;" class="sk-font-1">*点击开始后不要更改</span>
+                </div>
+            </div>
+            <div style="margin-top: 20px;margin-left: 15px;">
+                <div>
+                    <button type="button" class="btn btn-success"><span onclick="sendMsg(this)">开始</span></button>
+                    <button type="button" class="btn btn-warning"><span onclick="stopSend(this)">暂停</span></button>
+                    <button type="button" class="btn btn-danger"><span onclick="reset(this)">重置</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</body>
+</html>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    var ws;
+
+    <!-- 打开界面即启动连接 -->
+    $(function () {
+        link();
+    });
+
+    function link(data) {
+        ws = new WebSocket("ws://10.30.7.120:9503");//连接socket
+        ws.onopen = function (event) {
+            if($("#media-id option").length < 5){
+                getMedia();
+            }
+            if(data != undefined && data !== null) {
+                ws.send(data);
+                ws.onmessage = function (event) {
+                    console.log(event.data);
+                    $("#process").text("已发送"+event.data+"万条");
+                };
+                ws.onclose = function (event) {
+                    alert("已经与服务器断开连接\n当前连接状态为："+this.readyState);
+                };
+                ws.onerror = function (event) {
+                    alert("服务器异常");
+                };
+            }
+            return;
+        };
+    }
+    function getMedia() {
+        try {
+            var data = '{"flag":"getMedia"}';
+            ws.send(data);
+
+            ws.onmessage = function (event) {
+                console.log(event.data);
+                alert("素材加载完毕");
+                var media = $.parseJSON(event.data);
+                console.log(media);
+                for(var i = 0; i < media.length; i++) {
+                    $("#media-id").append("<option value='"+media[i]['media_id']+"'>"+media[i]['title']+"</option>");
+                }
+            };
+            ws.onclose = function (event) {
+                alert("已经与服务器断开连接\r\n当前连接状态："+this.readyState);
+            };
+            ws.onerror = function (event) {
+                alert("服务器异常");
+            };
+        }catch (ex){
+            alert(ex.message);
+        }
+    }
+
+    function sendMsg(object) {
+        var media_id = $("#media-id").val();
+        var set_send_num = $("#set_send_num").val();
+
+        if (media_id == ""){
+            alert("请选择素材");
+            return;
+
+        }
+
+        if (set_send_num == ""){
+            alert("请设置发送数量");
+            return;
+        }
+
+        var data = '{"flag":"sendMsg","media_id":"'+media_id+'","set_send_num":"'+set_send_num+'"}';
+        try {
+            if (ws == null || ws.readyState != 1){
+                link(data);
+            }else {
+                ws.send(data);
+                ws.onmessage = function (event) {
+                    console.log(event.data);
+                    $("#process").text("已发送"+event.data+"万条");
+                };
+                ws.onclose = function (event) {
+                    alert("已经与服务器断开连接\r\n当前连接状态："+this.readyState);
+                };
+                ws.onerror = function (event) {
+                    alert("服务器异常！");
+                };
+            }
+        }catch (ex){
+            alert(ex.message);
+        }
+    }
+
+    function stopSend(object) {
+        if (ws == null || ws.readyState == 3){
+            alert("推送过程未在进行，无需暂停");
+            return;
+        }
+        try {
+            var data = '{"flag":"close"}';
+            ws.send(data);
+
+            ws.onmessage = function (event) {
+                alert(event.data);
+            };
+
+            ws.onclose = function (event) {
+                alert("已经与服务器断开连接\r\n当前连接状态："+this.readyState);
+            };
+            ws.onerror = function(event) {
+                alert("服务器异常！");
+            };
+        } catch (ex){
+            alert(ex.message);
+        }
+    }
+
+    function reset(object) {
+        var data = '{"flag":"reset"}';
+        if (ws == null || ws.readyState == 3){
+            alert("推送过程未在进行，无需暂停");
+            return;
+        }
+        ws.send(data);
+        ws.onmessage = function (event) {
+            alert(event.data);
+        };
+        ws.onclose = function (event) {
+            alert("已经与服务器断开连接\r\n当前连接状态："+this.readyState);
+        };
+        ws.onerror = function(event) {
+            alert("服务器异常！");
+        };
+    }
+</script>
