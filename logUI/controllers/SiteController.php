@@ -72,13 +72,6 @@ class SiteController extends Controller
         ]);
     }
 
-    /**
-     * 按照条件筛选数据
-     * @return array
-     * author        : lianghuiju@chuchujie.com
-     * function_name : actionSearch
-     * description   :
-     */
     public function actionSearch() {
         set_time_limit(300);
         $param = Yii::$app->request->post();

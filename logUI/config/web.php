@@ -42,8 +42,8 @@ $config = [
         'elasticsearch' => [
             'class' => 'yii\elasticsearch\Connection',
             'nodes' => [
-                ['http_address' => 'internal-es-shop-262871665.cn-north-1.elb.amazonaws.com.cn:9200'],
-                //['http_address' => '10.30.30.12:9200'],
+                //['http_address' => '127.0.0.1:9200'],
+                ['http_address' => '10.30.30.12:9200'],
                 // configure more hosts if you have a cluster
             ],
         ],
