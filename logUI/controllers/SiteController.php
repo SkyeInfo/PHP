@@ -55,8 +55,7 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
-     *
+     * Index界面展示
      * @return string
      */
     public function actionIndex() {
@@ -71,10 +70,12 @@ class SiteController extends Controller
         sort($index);
         return $this->render('elastic', [
             'index' => $index,
-            //'properties' => Elastic::getField($index),
         ]);
     }
 
+    /**
+     * 搜索主Action
+     */
     public function actionSearch() {
         set_time_limit(300);
         $param = Yii::$app->request->post();
@@ -85,11 +86,14 @@ class SiteController extends Controller
             foreach ($paramArray['condition'] as $v) {
                 $filter = trim($v['filter']);
                 $field_name = trim($v['field']);
-                $search_name = is_array($v['search'])?$v['search']:trim($v['search']);
+                $search_name = is_array($v['search']) ? $v['search'] : trim($v['search']);
+
                 if ($filter == '条件' && $field_name == '字段' && $search_name == '') {
-                    continue;
+                    continue;//过滤掉前端给的默认数据
                 }
+
                 if (array_key_exists("filter", $v)) {
+                    //精确查询
                     if ($filter == '=') {
                         $where['query']['bool']["must"][] = array(
                             "match" => array(
@@ -97,6 +101,7 @@ class SiteController extends Controller
                             )
                         );
                     }
+                    //模糊查询
                     if ($filter == 'like') {
                         $where['query']['bool']["filter"][] = array(
                             "wildcard" => array(
@@ -110,6 +115,7 @@ class SiteController extends Controller
                         $start_time = $one_search ? $one_search : 0;
                         $two_search = trim($v['search'][1]);
                         $end_time = $two_search ? $two_search : date("Y-m-d H:i:s", time());
+
                         if ($start_time && $end_time) {
                             $where['query']['bool']["filter"][] = array(
                                 "range" => array(
@@ -153,7 +159,7 @@ class SiteController extends Controller
                     }
                 }
             }
-        } else {
+        }else {
             $where = array();
         }
         if ($paramArray['size']) {
@@ -179,17 +185,18 @@ class SiteController extends Controller
             krsort($where['query']['bool']);
         }
         $start_time = time();
-        $result = Elastic::elatsicSearch($paramArray['index'], $where);
-        $diff_time = time()-$start_time;
-        //记录超时的日志信息
+        $result = Elastic::elasticSearch($paramArray['index'], $where);
+        $diff_time = time() - $start_time;
+
+        //记录es查询超时的日志信息
         if($diff_time > 60){
             $filed_index = $paramArray['index'];
             $message = json_encode($where);
             $time = microtime(true);
             $log = new FileTarget();
-            $log->logFile = __DIR__ . '/../resources/moreTime.log'; //文件名自定义
-            $log->messages[] = ["{$message}|{$diff_time}",2,"{$filed_index}",$time];
-            $log->export();
+            $log->logFile = __DIR__ . '/../resources/es_timeout.log';
+            $log->messages[] = ["{$message}|{$diff_time}", 2, "{$filed_index}", $time];
+            $log->export();//写入日志文件
         }
         if (count($result['hits']['hits']) > 0) {
             foreach ($result['hits']['hits'] as $k => $v) {
@@ -199,7 +206,14 @@ class SiteController extends Controller
         }
         $rowCount = $result['hits']['total'];
         $pageCount = ceil(($rowCount / $pageSize));
-        return ['total' => $result['hits']['total'], 'hits' => $result['hits']['hits'], 'pageCount' => $pageCount, 'pageone' => $paramArray['page']];
+
+        $apiJson = [
+            'total'     => $result['hits']['total'],
+            'hits'      => $result['hits']['hits'],
+            'pageCount' => $pageCount,
+            'pageone'   => $paramArray['page']
+        ];
+        return $apiJson;
     }
 
     /**

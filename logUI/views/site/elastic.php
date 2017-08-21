@@ -30,7 +30,6 @@ AppAsset::addScript($this, Yii::$app->request->baseUrl . "/javascript/bootstrap-
                             <?php foreach ($index as $k => $value) { ?>
                                 <li><a href="#"><?= $value ?></a></li>
                             <?php } ?>
-                            <!--<li role="separator" class="divider"></li>-->
                         </ul>
                     </div>
                 </div>
@@ -43,7 +42,7 @@ AppAsset::addScript($this, Yii::$app->request->baseUrl . "/javascript/bootstrap-
                                 aria-haspopup="true" aria-expanded="false"><span>字段</span> <span class="caret"></span>
                         </button>
                         <ul class="dropdown-menu">
-                            <!-- <li><a href="#">Separated link</a></li>-->
+
                         </ul>
                     </div>
                     <div class="btn-group">
@@ -59,12 +58,6 @@ AppAsset::addScript($this, Yii::$app->request->baseUrl . "/javascript/bootstrap-
                             <li><a href="#"><=</a></li>
                             <li><a href="#">like</a></li>
                             <li><a href="#">between</a></li>
-                            <!-- <li><a href="#">must</a></li>
-                             <li><a href="#">filter</a></li>
-                            <li><a href="#">must_not</a></li>
-                             <li><a href="#">should</a></li>
-                             <li><a href="#">wildcard</a></li>
-                             <li><a href="#">range</a></li>-->
                         </ul>
                     </div>
                     <div class="btn-group">
@@ -132,7 +125,7 @@ AppAsset::addScript($this, Yii::$app->request->baseUrl . "/javascript/bootstrap-
             </div>
             <div class="modal-body">
                 <img class="img-responsive center-block"
-                     src="<?php $img = 'images/load' . rand(0, 32) . '.gif';
+                     src="<?php $img = 'images/load' . rand(0, 9) . '.gif';
                      echo Url::to($img); ?>"/>
             </div>
             <div class="modal-footer"></div>
@@ -148,7 +141,6 @@ AppAsset::addScript($this, Yii::$app->request->baseUrl . "/javascript/bootstrap-
     window.onload = function () {
         addFieldDiv(true);
         listenDropdown();
-        //bindEvent();
         listenPage();
         listenIndexInput();
         initialize();
@@ -310,7 +302,7 @@ AppAsset::addScript($this, Yii::$app->request->baseUrl . "/javascript/bootstrap-
             if (this.className == "label label-primary") {
                 Fields.push(this.innerText)
             }
-        })
+        });
         return Fields
     }
 

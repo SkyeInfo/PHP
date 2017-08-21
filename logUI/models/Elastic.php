@@ -26,24 +26,17 @@ class Elastic extends \yii\elasticsearch\ActiveRecord
     }
 
 
-    public static function elatsicSearch($index, $query)
+    public static function elasticSearch($index, $query)
     {
-
         $opt = [];
-        //数组查询
-       /*$arr = explode(";",$query);
-        foreach ($arr as $value) {
-            $v = explode("=",$value);
-            $opt[$v[0]] = $v[1];
-        }*/
+
         //json查询
         $config = [
-            "index"=>$index,
-            "queryParts" =>json_encode($query),
+            "index" => $index,
+            "queryParts" => json_encode($query),
         ];
         $command = self::getDb()->createCommand($config);
         return $command->search($opt);
     }
-
 
 }
