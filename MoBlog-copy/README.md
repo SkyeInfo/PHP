@@ -1,12 +1,10 @@
 MoBlog
 ===================================
-###截图###
-![Snip20150220_1.png](./Snip20150220_1.png "Snip20150220_1.png")
-###演示###
+###演示
 
 网址： [http://moblog.coding.io/](http://moblog.coding.io/)
 
-###说明###
+###说明
 
 1.MoBlog是一个基于Yii2开发的博客系统，目前一些功能正在完善
 
@@ -14,7 +12,7 @@ MoBlog
 
 3.为了部署到coding演示平台，省掉了yii命令部署方式
 
-###安装###
+###安装
 
 1.下载或clone源码，运行`composer install`安装依赖
 
@@ -26,9 +24,11 @@ MoBlog
 
 5.后台账号`admin` 密码`123456`
 
-###协议###
+###协议
 
 MIT
+感谢：https://github.com/mojifan
+本项目仅供个人学习使用
 
 
 
