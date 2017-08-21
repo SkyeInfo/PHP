@@ -1,8 +1,8 @@
-### 基于Yii的日志可视化工具
+## 基于Yii的日志可视化工具
 
 Elasticsearch
 
-####1.使用时需要修改config->web.php 
+### 1.使用时需要修改config->web.php 
 
 ```
 'elasticsearch' => [
@@ -14,7 +14,7 @@ Elasticsearch
     ],
 ],
 ```
-####2.简单的ELK日志分析系统搭建
+### 2.简单的ELK日志分析系统搭建
 
 [elasticsearch+logstash+kibana](https://www.elastic.co/cn/products)
   

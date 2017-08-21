@@ -65,13 +65,9 @@ class SiteController extends Controller
         foreach ($indices as $key => $value) {
             $index[] = $value['index'];
         }
-        /***********************************************************
-         * 为了调试页面，此处默认给$index赋值数组，实际上此处必须要验证
-         * 实际使用时请把下面这个if删掉
-         **********************************************************/
-//        if (empty($index)){
-//            $index = array(1,2,3);
-//        }
+        /***********************
+         * 此处要求能够正常连接ES
+         **********************/
         sort($index);
         return $this->render('elastic', [
             'index' => $index,
