@@ -5,7 +5,7 @@
 use app\assets\AppAsset;
 use yii\helpers\Url;
 
-$this->title = 'Search';
+$this->title = '日志查询系统';
 $this->params['breadcrumbs'][] = $this->title;
 AppAsset::register($this);
 AppAsset::addCss($this, Yii::$app->request->baseUrl . "/css/bootstrap-datetimepicker.min.css");
