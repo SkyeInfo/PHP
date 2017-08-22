@@ -27,8 +27,8 @@ MoBlog
 ###协议
 
 MIT
-感谢：https://github.com/mojifan
-本项目仅供个人学习使用
+
+本系统仅供个人学习使用，感谢原作者
 
 
 
