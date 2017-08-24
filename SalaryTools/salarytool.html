@@ -8,18 +8,16 @@
 <form>
     <div style="margin-top: 50px; margin-left: 20px" id="info">
         <h2>Salary</h2>
-        <span>工资总数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="totalMoney" value="2222"><br>
-        <span>公积金基数：&nbsp;</span><input type="text" width="150px" id="housingFundMoney" value="2222"><br>
-        <span>公积金率：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="housingFundRate" value="2"><br>
-        <span>五险基数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="insuranceMoney" value="2222"><br>
-        <span>请假天数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="leaveDay" ><br><br>
+        <span>工资总数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="totalMoney" value="11000"><br>
+        <span>公积金基数：&nbsp;</span><input type="text" width="150px" id="housingFundMoney" value="10000"><br>
+        <span>公积金率：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="housingFundRate" value="12"><span>%</span><br>
+        <span>五险基数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="insuranceMoney" value="2000"><br>
+        <span>请假天数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="leaveDay" value="2"><br><br>
         <button style="width: 80px; height: 20px;" onclick="calculation()">提交计算</button>
     </div>
-    <div style="margin-top: 200px; margin-left: 20px" id="result">
-
-    </div>
+    <p>Result</p>
 </form>
-<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
 <script type="text/javascript">
     function calculation() {
         var totalMoney       = $("#totalMoney").val();
@@ -34,7 +32,7 @@
             return;
         }
         $.ajax({
-            url: 'Calculation.php',
+            url: 'calculation.php',
             type: 'POST',
             dataType: 'json',
             data: {
@@ -44,16 +42,10 @@
                 'insuranceMoney': insuranceMoney,
                 'leaveDay': leaveDay
             },
-            error: function(){
-                alert('Error Ajax');
-            },
             success: function (e) {
 
-//                if (e.status != 1) {
-//                    alert(e.info);
-//                    return;
-//                }
                 console.log(e);
+                alert(JSON.stringify(e));
             }
         });
     }
