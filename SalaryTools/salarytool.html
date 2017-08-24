@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tool</title>
+</head>
+<body>
+<form>
+    <div style="margin-top: 50px; margin-left: 20px" id="info">
+        <h2>Salary</h2>
+        <span>工资总数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="totalMoney" value="2222"><br>
+        <span>公积金基数：&nbsp;</span><input type="text" width="150px" id="housingFundMoney" value="2222"><br>
+        <span>公积金率：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="housingFundRate" value="2"><br>
+        <span>五险基数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="insuranceMoney" value="2222"><br>
+        <span>请假天数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="leaveDay" ><br><br>
+        <button style="width: 80px; height: 20px;" onclick="calculation()">提交计算</button>
+    </div>
+    <div style="margin-top: 200px; margin-left: 20px" id="result">
+
+    </div>
+</form>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+    function calculation() {
+        var totalMoney       = $("#totalMoney").val();
+        var housingFundMoney = $("#housingFundMoney").val();
+        var housingFundRate  = $("#housingFundRate").val();
+        var insuranceMoney   = $("#insuranceMoney").val();
+        var leaveDay         = $("#leaveDay").val();
+
+        if (totalMoney == null || housingFundMoney == null || housingFundRate == null || insuranceMoney == null)
+        {
+            alert("信息不全！");
+            return;
+        }
+        $.ajax({
+            url: 'Calculation.php',
+            type: 'POST',
+            dataType: 'json',
+            data: {
+                'totalMoney': totalMoney,
+                'housingFundMoney': housingFundMoney,
+                'housingFundRate': housingFundRate,
+                'insuranceMoney': insuranceMoney,
+                'leaveDay': leaveDay
+            },
+            success: function (e) {
+
+//                if (e.status != 1) {
+//                    alert(e.info);
+//                    return;
+//                }
+                console.log(e);
+            }
+        })
+    }
+</script>
+</body>
+</html>
