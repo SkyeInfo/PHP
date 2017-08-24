@@ -34,7 +34,7 @@
             return;
         }
         $.ajax({
-            url: 'http://ysk.skyeinfo.com/Calculation.php',
+            url: 'Calculation.php',
             type: 'POST',
             dataType: 'json',
             data: {
@@ -43,6 +43,9 @@
                 'housingFundRate': housingFundRate,
                 'insuranceMoney': insuranceMoney,
                 'leaveDay': leaveDay
+            },
+            error: function(){
+                alert('Error Ajax');
             },
             success: function (e) {
 
