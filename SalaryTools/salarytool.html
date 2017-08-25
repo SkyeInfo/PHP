@@ -5,21 +5,28 @@
     <title>Tool</title>
 </head>
 <body>
-<form>
-    <div style="margin-top: 50px; margin-left: 20px" id="info">
-        <h2>Salary</h2>
-        <span>工资总数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="totalMoney" value="11000"><br>
-        <span>公积金基数：&nbsp;</span><input type="text" width="150px" id="housingFundMoney" value="10000"><br>
-        <span>公积金率：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="housingFundRate" value="12"><span>%</span><br>
-        <span>五险基数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="insuranceMoney" value="2000"><br>
-        <span>请假天数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="leaveDay" value="2"><br><br>
-        <button style="width: 80px; height: 20px;" onclick="calculation()">提交计算</button>
-    </div>
-    <p>Result</p>
-</form>
+<div style="margin-top: 50px; margin-left: 20px" id="info">
+    <h2>Salary</h2>
+    <span>工资总数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="totalMoney"><br>
+    <span>公积金基数：&nbsp;</span><input type="text" width="150px" id="housingFundMoney"><br>
+    <span>公积金率：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="housingFundRate"><span>%</span><br>
+    <span>五险基数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="insuranceMoney"><br>
+    <span>请假天数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="leaveDay"><br><br>
+    <button style="width: 80px; height: 20px;" onclick="submit()">提交计算</button>
+</div>
+<h3 style="margin-top: 30px; margin-left: 20px">Self</h3>
+<div style="margin-left: 20px" id="slef">
+
+</div>
+<h3 style="margin-top: 30px; margin-left: 20px">Company</h3>
+<div style=" margin-left: 20px" id="company">
+
+</div>
+
+</body>
 <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
 <script type="text/javascript">
-    function calculation() {
+    function submit(){
         var totalMoney       = $("#totalMoney").val();
         var housingFundMoney = $("#housingFundMoney").val();
         var housingFundRate  = $("#housingFundRate").val();
@@ -32,9 +39,9 @@
             return;
         }
         $.ajax({
-            url: 'calculation.php',
-            type: 'POST',
-            dataType: 'json',
+            url:'calculation.php',
+            type:'POST',
+            dataType:'json',
             data: {
                 'totalMoney': totalMoney,
                 'housingFundMoney': housingFundMoney,
@@ -42,13 +49,62 @@
                 'insuranceMoney': insuranceMoney,
                 'leaveDay': leaveDay
             },
-            success: function (e) {
+            success:function (e){
+                if(e.status == 1){
+                    console.log(e);
+                    $("#slef").html("");
+                    $("#company").html("");
+                    var selfTable = document.createElement('table');
+                    var companyTable = document.createElement('table');
+                    var tdSelf, trSelf, trCompany, tdCompany;
+                    selfTable.border = "1px";
+                    selfTable.style.borderCollapse = "collapse";
+                    selfTable.style.borderStyle = "solid";
+                    selfTable.style.borderColor = "#666666";
+                    selfTable.width = "50%";
+                    companyTable.border = "1px";
+                    companyTable.style.borderCollapse = "collapse";
+                    companyTable.style.borderStyle = "solid";
+                    companyTable.style.borderColor = "#666666";
+                    companyTable.width = "50%";
 
-                console.log(e);
-                alert(JSON.stringify(e));
+                    $.each(e.SelfMoney, function (k,v) {
+                        trSelf = selfTable.insertRow(selfTable.rows.length);
+                        trSelf.style.height = "30px";
+
+                        tdSelf = trSelf.insertCell(trSelf.cells.length);
+                        tdSelf.innerHTML = k;
+                        tdSelf.align = "center";
+                        tdSelf.style.heidht="30px";
+                        tdSelf.style.width = "50%";
+
+                        tdSelf = trSelf.insertCell(trSelf.cells.length);
+                        tdSelf.innerHTML = v;
+                        tdSelf.align = "center";
+                        tdSelf.style.heidht="30px";
+                    });
+
+                    $.each(e.CompanyMoney, function (k,v) {
+                        trCompany = companyTable.insertRow(companyTable.rows.length);
+                        trCompany.style.height = "30px";
+
+                        tdCompany = trCompany.insertCell(trCompany.cells.length);
+                        tdCompany.innerHTML = k;
+                        tdCompany.align = "center";
+                        tdCompany.style.heidht="30px";
+                        tdCompany.style.width = "50%";
+
+                        tdCompany = trCompany.insertCell(trCompany.cells.length);
+                        tdCompany.innerHTML = v;
+                        tdCompany.align = "center";
+                        tdCompany.style.heidht="30px";
+                    });
+
+                    document.querySelector("#slef").appendChild(selfTable);
+                    document.querySelector("#company").appendChild(companyTable);
+                }
             }
         });
     }
 </script>
-</body>
 </html>

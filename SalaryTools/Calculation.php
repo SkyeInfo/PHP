@@ -71,4 +71,21 @@ $SelfMoney = array(
     '缴税'    => $taxes,
     '事假扣钱' => $leaveMoney
 );
-echo json_encode($SelfMoney);
+$CompanyMoney = array(
+    '工资总数' => $totalMoney,
+    '公司缴公积金' => $housingFundCompany,
+    '养老保险' => $pensionCompany,
+    '医疗保险' => $medicalCompany,
+    '失业保险' => $lostWorkCompany,
+    '工伤保险' => $injuryCompany,
+    '生育保险' => $birthCompany,
+    '总支出'   => $totalMoney + $housingFundCompany + $pensionCompany + $medicalCompany + $lostWorkCompany + $injuryCompany + $birthCompany
+);
+
+$data = array(
+    'status' => 1,
+    'SelfMoney' => $SelfMoney,
+    'CompanyMoney' => $CompanyMoney
+);
+
+echo json_encode($data);
