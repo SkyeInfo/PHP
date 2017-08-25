@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form>
+    <input type="text" id="test" value="111">
+    <input type="button" onclick="abc()">
+</form>
+</body>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
+<script type="text/javascript">
+    function abc() {
+        alert("aaa");
+        var test = $('#test').val();
+        $.ajax({
+            url:'Add.php',
+            type:'POST',
+            dataType:'json',
+            data: {
+                'test': test
+            },
+            success:function(e){
+                console.log(e);
+            }
+        });
+    }
+
+</script>
+
+</html>
