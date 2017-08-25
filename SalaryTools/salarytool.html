@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Tool</title>
 </head>
-<body>
+<body>\
 <div style="margin-top: 50px; margin-left: 20px" id="info">
     <h2>Salary</h2>
     <span>工资总数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="totalMoney"><br>
@@ -12,7 +12,7 @@
     <span>公积金率：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="housingFundRate"><span>%</span><br>
     <span>五险基数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="insuranceMoney"><br>
     <span>请假天数：&nbsp;&nbsp;&nbsp;&nbsp;</span><input type="text" width="150px" id="leaveDay"><br><br>
-    <button style="width: 80px; height: 20px;" onclick="submit()">提交计算</button>
+    <button style="width: 80px; height: 20px;" onclick="calculation()">提交计算</button>
 </div>
 <h3 style="margin-top: 30px; margin-left: 20px">Self</h3>
 <div style="margin-left: 20px" id="slef">
@@ -26,7 +26,7 @@
 </body>
 <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.js"></script>
 <script type="text/javascript">
-    function submit(){
+    function calculation(){
         var totalMoney       = $("#totalMoney").val();
         var housingFundMoney = $("#housingFundMoney").val();
         var housingFundRate  = $("#housingFundRate").val();
