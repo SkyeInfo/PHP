@@ -8,13 +8,11 @@
 $totalMoney       = intval($_POST['totalMoney']);
 $housingFundMoney = intval($_POST['housingFundMoney']);
 $housingFundRate  = intval($_POST['housingFundRate'])/100;
-$insuranceMoney   = intval($_POST['insuranceMoney']);
+$insuranceMoney   = floatval($_POST['insuranceMoney']);
 $leaveDay         = isset($_POST['leaveDay']) ? intval($_POST['leaveDay']) : 0;
 
 //事假扣款
 $leaveMoney = $totalMoney * ($leaveDay / 21.75);
-
-$housingFundMoney = ($totalMoney - $leaveMoney) < 10000 ? ($totalMoney - $leaveMoney) : 10000;
 
 //住房公积金
 $housingFundSelf = $housingFundMoney * $housingFundRate;
@@ -23,21 +21,21 @@ $housingFundCompany = $housingFundSelf;
 //五险
 //养老
 $pensionSelf = $insuranceMoney * 0.08;
-$pensionCompany = $insuranceMoney * 0.2;
+$pensionCompany = $insuranceMoney * 0.19;
 
 //医疗
-$medicalSelf = $insuranceMoney * 0.02;
-$medicalCompany = $insuranceMoney * 0.1;
+$medicalSelf = 4624 * 0.02 + 3;
+$medicalCompany = 4624 * 0.1;
 
 //失业
 $lostWorkSelf = $insuranceMoney * 0.002;
-$lostWorkCompany = $insuranceMoney * 0.01;
+$lostWorkCompany = $insuranceMoney * 0.008;
 
 //工伤
-$injuryCompany = $insuranceMoney * 0.005;
+$injuryCompany = 4624 * 0.003;
 
 //生育
-$birthCompany = $insuranceMoney * 0.008;
+$birthCompany = 4624 * 0.008;
 
 $noTaxes = $totalMoney - $housingFundSelf - $pensionSelf - $medicalSelf - $lostWorkSelf - $leaveMoney - 3500;
 
@@ -56,18 +54,17 @@ if ($noTaxes <= 1500){
 }elseif ($noTaxes > 80000){
     $taxes = $noTaxes * 0.45 - 13505;
 }
-
 $realMoneySelf = $totalMoney - $housingFundSelf - $pensionSelf - $medicalSelf -$lostWorkSelf - $taxes - $leaveMoney;
 
 $SelfMoney = array(
     '到手工资' => $realMoneySelf,
     '自己交的公积金' => $housingFundSelf,
     '到手工资+公积金' => $realMoneySelf + $housingFundSelf + $housingFundCompany,
-    '养老保险' => $pensionSelf + $pensionCompany,
-    '医疗保险' => $medicalSelf + $medicalCompany,
-    '失业保险' => $lostWorkSelf + $lostWorkCompany,
-    '工伤保险' => $injuryCompany,
-    '生育保险' => $birthCompany,
+    '养老保险' => $pensionSelf,
+    '医疗保险' => $medicalSelf,
+    '失业保险' => $lostWorkSelf,
+    '工伤保险' => 0,
+    '生育保险' => 0,
     '缴税'    => $taxes,
     '事假扣钱' => $leaveMoney
 );
