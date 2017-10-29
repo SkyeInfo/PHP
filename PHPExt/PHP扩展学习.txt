@@ -1,0 +1,22 @@
+源码安装PHP扩展的过程:
+
+php官方扩展的源码都在PHP源码包 phpsrc/ext 中
+
+例如安装bz2
+
+-/usr/local/php/bin/phpize 编译PHP扩展的工具，主要是根据系统信息生成对应的configure文件
+
+-./configure --with-php-config=/usr/local/php/bin/php-config
+
+-make
+-make install
+
+---Installing shared extensions:     /usr/local/php/lib/php/extensions/no-debug-non-zts-20131226/
+
+配置php.ini
+extension=bz2.so
+
+重启php-fpm
+
+-------------------------------------------
+自己编写一个PHP扩展
