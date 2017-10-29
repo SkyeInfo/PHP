@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>测试Swoole</title>
+</head>
+    Hello Swoole<br>
+    <div id="conn_status">
+        连接WebSocket：<button style="width: 50px; height: 20px" onclick="getLink()">连接</button>
+    </div>
+    <div id="status">
+
+    </div>
+    <div id="content">
+
+    </div>
+    <br><br>
+    <div>
+        <input id="sendMsg" style="height: 20px;width: 100px"><br><br>
+        <button style="width: 80px; height: 30px" onclick="sendMsg()">发送</button>
+    </div>
+    <div>
+        <!-- <button style="width: 80px; height: 30px; color: red" onclick="haltLink()">断开连接</button>
+        -->
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+    var cws;
+    function getLink() {
+        try {
+            cws = new WebSocket("ws://192.168.33.10:9503");
+            cws.onopen = function (event) {
+                alert("已经与服务器建立连接\n当前连接状态为："+this.readyState);
+            };
+            $("#status").append("<span style='color: red'>已经与WebSocket服务器建立连接</span>")
+        }catch(e) {
+            alert(e.message);
+        }
+    }
+
+    function sendMsg() {
+        try {
+            var message = $("#sendMsg").val();
+            var data = '{"msg":"'+message+'"}';
+
+            cws.send(data);
+            $("#content").append("<span>Client:<b>"+message+"</b></span><br>");
+            $("#sendMsg").val("");
+            cws.onmessage = function (event) {
+                console.log(event.data);
+                $("#content").append("<span>Server:<b>"+event.data+"</b></span><br>");
+                //alert(event.data);
+            }
+        }catch (e){
+            alert(e.message);
+        }
+    }
+    
+    function haltLink() {
+        try {
+            cws.onclose = function (event) {
+                cws.close();
+                alert("已经断开WebSocket连接，状态码为："+this.readyState);
+            }
+        }catch (e){
+            alert(e.message);
+        }
+    }
+</script>
+</html>
+
