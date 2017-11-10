@@ -18,13 +18,15 @@ curl -d "name=value&name2=value2" url //post形式提交
 
 ### 3.Header
 
+*Request*
+
 curl -A "Mozilla/5.0 Firefox/21.0" url //设置http请求头User-Agent
 
 curl -e url1 url2     //设置http请求头Referer
 
 curl -H "Connection:keep-alive \n User-Agent: Mozilla/5.0" url
 
-
+*Reponse*
 
 curl -I url //仅仅返回header
 
