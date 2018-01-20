@@ -5,7 +5,7 @@
 
 ### 1.cookie
 
-curl -c tmpfile/path url //把cookieb保存在tmpfile/path下
+curl -c tmpfile/path url //把cookie保存在tmpfile/path下
 
 curl -b "key1=val1;key2=val2;" url  //发送cookie键值对
 
