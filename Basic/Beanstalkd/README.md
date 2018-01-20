@@ -4,12 +4,14 @@
 ### 1.安装（以CentOS为例）
 在CentOS上可以直接使用yum安装
 >yum list beanstalkd
+
 ![](./img/beanstalkd-install1.png)
 
 >yum install beanstalkd
 
 查看Beanstalk安装目录
 >rpm -ql beanstalkd
+
 ![](./img/beanstalkd-install2.png)
 
 将Beanstalk注册为系统服务
