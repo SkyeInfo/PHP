@@ -9,10 +9,6 @@
  * GitHub Link https://github.com/davidpersson/beanstalk
  */
 
-namespace Demo;
-
-use RuntimeException;
-
 /**
  * An interface to the beanstalk queue service. Implements the beanstalk
  * protocol spec 1.9. Where appropriate the documentation from the protocol
