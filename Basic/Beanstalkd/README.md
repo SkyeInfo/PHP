@@ -27,6 +27,7 @@
 >beanstalk-https://github.com/davidpersson/beanstalk
 
 运行生产者向队列中抛入一个job
+
 然后运行消费者读取生产者抛入的job数据
 ![](./img/run.png)
 
