@@ -1,4 +1,5 @@
-<? php
+<?php
+
 /**
  * 批量更新数据 只更新一个字段
  * @param $mateArr  要分割的数据
@@ -8,7 +9,7 @@
  * @lastModifyTime 2017/10/25
  * @lastModify skyeinfo@qq.com
  */
-function batchUpdate($mateArr, $len = 50){
+function batchUpdate($mateArr, $len = 50) {
     $mateArrTemp = array_chunk($mateArr, $len);
     $sqlUpdate = array();
     foreach ($mateArrTemp as $k => $mateViewOrder){
@@ -36,7 +37,7 @@ function batchUpdate($mateArr, $len = 50){
  * author        :skyeinfo@qq.com
  * function_name : moreUpdate
  */
-function moreUpdate($data,$table,$len=50){
+function moreUpdate($data,$table,$len=50) {
 	$idArray = array();
 	$tmp1Array = array();
 	$tmp2Array = array();
