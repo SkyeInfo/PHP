@@ -14,7 +14,7 @@ skyeinfo
 /etc/rc.d/init.d/iptables save
  
 查看打开的端口：
-# /etc/init.d/iptables status
+/etc/init.d/iptables status
 第一步配置网络，更改相应配置文件，在VB平台上采用桥接模式，配置防火墙 放开22端口等
 
 yum安装wget
