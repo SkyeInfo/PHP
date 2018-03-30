@@ -12,7 +12,7 @@ function downloadImage($url) {
         mkdir(iconv("UTF-8", "GBK", $path), 0755, true);
     }
 
-    $imgOriginName = substr($url, 59);   //获取图片的原始名字，包含扩展名
+    $imgOriginName = basename($url);   //获取图片的原始名字，包含扩展名
     $filename = $path . date("YmdHis") . $extname;   //在原始文件名字前加上时间避免重复
     
     ob_start();    //打开输出
