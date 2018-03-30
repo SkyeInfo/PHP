@@ -3,7 +3,10 @@
  * $url为图片的网络地址
  */
 function downloadImage($url) {
-    $ext = strrchr($url, ".");
+    $urlExp = explode('?', $url);
+    $url = $urlExp[0];
+
+    $ext = strtolower(strrchr($url, "."));
     if ($ext != ".png" && $ext != ".jpg" && $ext != ".jpeg") return false;
 
     $path = __DIR__ . '/imageTemp/' . date("Ymd") . '/';   //本地路径
