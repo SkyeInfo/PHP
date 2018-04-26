@@ -1,6 +1,7 @@
 <?
 /**
- * $url为图片的网络地址
+ * @param $url
+ * @return bool|string
  */
 function downloadImage($url) {
     $urlExp = explode('?', $url);
@@ -16,7 +17,7 @@ function downloadImage($url) {
     }
 
     $imgOriginName = basename($url);   //获取图片的原始名字，包含扩展名
-    $filename = $path . date("YmdHis") . $extname;   //在原始文件名字前加上时间避免重复
+    $filename = $path . date("YmdHis") . $imgOriginName;   //在原始文件名字前加上时间避免重复
     
     ob_start();    //打开输出
     readfile($url);//输出图片文件
