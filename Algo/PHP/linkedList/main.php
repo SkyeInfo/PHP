@@ -29,6 +29,7 @@ function isPalindrome(SingleLinkedList $list) {
     $fast = $list->head->next;
     $remindNode = null;
 
+    //找出链表中间节点，并反转左侧链表
     while ($fast != null && $fast->next != null) {
         $fast = $fast->next->next;
 
@@ -37,7 +38,7 @@ function isPalindrome(SingleLinkedList $list) {
         $pre = $slow;
         $slow = $remindNode;
     }
-
+    //当链表长度为奇数时
     if ($fast != null) {
         $slow = $slow->next;
     }
@@ -53,10 +54,11 @@ function isPalindrome(SingleLinkedList $list) {
 
     return true;
 }
+
+// test
 $list = new SingleLinkedList();
 $list->insert('a');
 $list->insert('b');
-$list->insert('c');
 $list->insert('c');
 $list->insert('b');
 $list->insert('a');
