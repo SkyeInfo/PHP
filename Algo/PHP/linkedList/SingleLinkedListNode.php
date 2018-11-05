@@ -1,9 +1,9 @@
 <?php
 /**
  * 链接节点类
- * @author yangshengkai
+ * @author skyeinfo@qq.com
  * @lastModifyTime 2018/10/23
- * @lastModify yangshengkai
+ * @lastModify skyeinfo@qq.com
  */
 namespace Algo\PHP\linkedList;
 
