@@ -5,7 +5,7 @@
  * @lastModifyTime 2018/10/23
  * @lastModify skyeinfo@qq.com
  */
-namespace Algo\PHP\linkedList;
+namespace LinkedList;
 
 class SingleLinkedListNode
 {
