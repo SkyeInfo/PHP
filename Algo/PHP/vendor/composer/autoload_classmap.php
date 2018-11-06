@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'LinkedList\\SingleLinkedList' => $baseDir . '/linkedList/SingleLinkedList.php',
+    'LinkedList\\SingleLinkedListAlgo' => $baseDir . '/linkedList/SingleLinkedListAlgo.php',
     'LinkedList\\SingleLinkedListNode' => $baseDir . '/linkedList/SingleLinkedListNode.php',
 );

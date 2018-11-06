@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitd8958fdd323ca3aa7cb6d8eae343b56e
+class ComposerStaticInitee41914f9cdf6285124698be653af9fc
 {
     public static $prefixLengthsPsr4 = array (
         'L' => 
@@ -22,15 +22,16 @@ class ComposerStaticInitd8958fdd323ca3aa7cb6d8eae343b56e
 
     public static $classMap = array (
         'LinkedList\\SingleLinkedList' => __DIR__ . '/../..' . '/linkedList/SingleLinkedList.php',
+        'LinkedList\\SingleLinkedListAlgo' => __DIR__ . '/../..' . '/linkedList/SingleLinkedListAlgo.php',
         'LinkedList\\SingleLinkedListNode' => __DIR__ . '/../..' . '/linkedList/SingleLinkedListNode.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitd8958fdd323ca3aa7cb6d8eae343b56e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitd8958fdd323ca3aa7cb6d8eae343b56e::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitd8958fdd323ca3aa7cb6d8eae343b56e::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitee41914f9cdf6285124698be653af9fc::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitee41914f9cdf6285124698be653af9fc::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitee41914f9cdf6285124698be653af9fc::$classMap;
 
         }, null, ClassLoader::class);
     }
