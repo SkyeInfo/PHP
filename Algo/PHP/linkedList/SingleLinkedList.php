@@ -146,7 +146,7 @@ class SingleLinkedList{
     }
 
     /**
-     * 打印链表
+     * 打印链表，拼接构成的链表不可用
      * @author skyeinfo@qq.com
      * @lastModifyTime 2018/11/5
      * @lastModify skyeinfo@qq.com
