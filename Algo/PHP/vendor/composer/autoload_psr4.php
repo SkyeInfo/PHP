@@ -6,5 +6,6 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Stack\\' => array($baseDir . '/stack'),
     'LinkedList\\' => array($baseDir . '/linkedList'),
 );

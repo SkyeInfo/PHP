@@ -7,6 +7,10 @@ namespace Composer\Autoload;
 class ComposerStaticInitee41914f9cdf6285124698be653af9fc
 {
     public static $prefixLengthsPsr4 = array (
+        'S' => 
+        array (
+            'Stack\\' => 6,
+        ),
         'L' => 
         array (
             'LinkedList\\' => 11,
@@ -14,6 +18,10 @@ class ComposerStaticInitee41914f9cdf6285124698be653af9fc
     );
 
     public static $prefixDirsPsr4 = array (
+        'Stack\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/stack',
+        ),
         'LinkedList\\' => 
         array (
             0 => __DIR__ . '/../..' . '/linkedList',
@@ -24,6 +32,7 @@ class ComposerStaticInitee41914f9cdf6285124698be653af9fc
         'LinkedList\\SingleLinkedList' => __DIR__ . '/../..' . '/linkedList/SingleLinkedList.php',
         'LinkedList\\SingleLinkedListAlgo' => __DIR__ . '/../..' . '/linkedList/SingleLinkedListAlgo.php',
         'LinkedList\\SingleLinkedListNode' => __DIR__ . '/../..' . '/linkedList/SingleLinkedListNode.php',
+        'Stack\\StackOnLinkedList' => __DIR__ . '/../..' . '/stack/StackOnLinkedList.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

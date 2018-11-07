@@ -5,7 +5,8 @@
   "require": {},
   "autoload": {
     "psr-4": {
-      "LinkedList\\": "linkedList/"
+      "LinkedList\\": "linkedList/",
+      "Stack\\": "stack/"
     }
   }
 }
