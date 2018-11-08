@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Stack\\' => array($baseDir . '/stack'),
+    'Queue\\' => array($baseDir . '/queue'),
     'LinkedList\\' => array($baseDir . '/linkedList'),
 );

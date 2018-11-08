@@ -239,9 +239,9 @@ class SingleLinkedList{
 
     /**
      * 构造一个有环链表
-     * @author yangshengkai@chuchujie.com
+     * @author skyeinfo@qq.com
      * @lastModifyTime 2018/11/6
-     * @lastModify yangshengkai@chuchujie.com
+     * @lastModify skyeinfo@qq.com
      */
     public function buildHasCircleList() {
         $data = [1, 2, 3, 4, 5, 6, 7, 8];

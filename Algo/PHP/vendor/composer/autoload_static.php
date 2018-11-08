@@ -11,6 +11,10 @@ class ComposerStaticInitee41914f9cdf6285124698be653af9fc
         array (
             'Stack\\' => 6,
         ),
+        'Q' => 
+        array (
+            'Queue\\' => 6,
+        ),
         'L' => 
         array (
             'LinkedList\\' => 11,
@@ -22,6 +26,10 @@ class ComposerStaticInitee41914f9cdf6285124698be653af9fc
         array (
             0 => __DIR__ . '/../..' . '/stack',
         ),
+        'Queue\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/queue',
+        ),
         'LinkedList\\' => 
         array (
             0 => __DIR__ . '/../..' . '/linkedList',
@@ -32,6 +40,7 @@ class ComposerStaticInitee41914f9cdf6285124698be653af9fc
         'LinkedList\\SingleLinkedList' => __DIR__ . '/../..' . '/linkedList/SingleLinkedList.php',
         'LinkedList\\SingleLinkedListAlgo' => __DIR__ . '/../..' . '/linkedList/SingleLinkedListAlgo.php',
         'LinkedList\\SingleLinkedListNode' => __DIR__ . '/../..' . '/linkedList/SingleLinkedListNode.php',
+        'Queue\\QueueOnLinkedList' => __DIR__ . '/../..' . '/queue/QueueOnLinkedList.php',
         'Stack\\StackOnLinkedList' => __DIR__ . '/../..' . '/stack/StackOnLinkedList.php',
     );
 

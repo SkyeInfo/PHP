@@ -6,7 +6,8 @@
   "autoload": {
     "psr-4": {
       "LinkedList\\": "linkedList/",
-      "Stack\\": "stack/"
+      "Stack\\": "stack/",
+      "Queue\\": "queue/"
     }
   }
 }

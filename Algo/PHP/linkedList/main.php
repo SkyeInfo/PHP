@@ -1,9 +1,9 @@
 <?php
 /**
  * 主程序
- * @author yangshengkai@chuchujie.com
+ * @author skyeinfo@qq.com
  * @lastModifyTime 2018/11/5
- * @lastModify yangshengkai@chuchujie.com
+ * @lastModify skyeinfo@qq.com
  */
 namespace LinkedList;
 
@@ -13,9 +13,9 @@ require_once '../vendor/autoload.php';
 
 /**
  * 检查链表是否是回文串
- * @author yangshengkai@chuchujie.com
+ * @author skyeinfo@qq.com
  * @lastModifyTime 2018/11/5
- * @lastModify yangshengkai@chuchujie.com
+ * @lastModify skyeinfo@qq.com
  * @param SingleLinkedList $list
  * @return bool
  */
