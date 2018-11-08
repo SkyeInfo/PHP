@@ -1,9 +1,9 @@
 <?php
 /**
  * 测试
- * @author yangshengkai@chuchujie.com
+ * @author skyeinfo@qq.com
  * @lastModifyTime 2018/11/7
- * @lastModify yangshengkai@chuchujie.com
+ * @lastModify skyeinfo@qq.com
  */
 namespace Stack;
 

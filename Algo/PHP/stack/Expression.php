@@ -1,13 +1,13 @@
 <?php
 /**
- * 用(数组)栈表示表达式运算过程
- * @author yangshengkai@chuchujie.com
+ * 用(数组)栈表示表达式运算过程，用一个栈同样可以实现
+ * @author skyeinfo@qq.com
  * @lastModifyTime 2018/11/7
- * @lastModify yangshengkai@chuchujie.com
+ * @lastModify skyeinfo@qq.com
  */
 
 $t = new Expression();
-$t->handleExpression('-1+2-(1+2*3)');
+$t->handleExpression('-1+2-(1+2*3-6/3)');
 class Expression
 {
     public function __construct() { }
@@ -21,7 +21,6 @@ class Expression
         $numStack = $operatorStack = [];
         $operatorStack[] = null;
         for ($i = 0; $i < $count; $i++) {
-            var_dump($numStack, $operatorStack);
             try {
                 if (ord($arr[$i]) >= 48 && ord($arr[$i] <= 57)) {   //ASCII 判断数字，is_numeric
                     array_push($numStack, $arr[$i]);

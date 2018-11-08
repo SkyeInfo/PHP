@@ -89,9 +89,9 @@ class StackOnLinkedList
 
     /**
      * 获取长度
-     * @author yangshengkai@chuchujie.com
+     * @authorskyeinfo@qq.com
      * @lastModifyTime 2018/11/7
-     * @lastModify yangshengkai@chuchujie.com
+     * @lastModify skyeinfo@qq.com
      * @return int
      */
     public function getLength() {
